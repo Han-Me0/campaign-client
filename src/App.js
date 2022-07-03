@@ -8,8 +8,9 @@ function App() {
   return (
     <Layout>
      <Routes>
-      <Route path="/" element={<AllCampaigns />} />
+      <Route path="/campaigns" element={<AllCampaigns />} />
       <Route path="+" element={<ErrorPage />} />
+      <Route path="/campaigns/:campaignId" element={<AllCampaigns />} />
      </Routes>
     </Layout>
   )

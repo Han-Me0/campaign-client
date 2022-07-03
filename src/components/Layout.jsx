@@ -16,7 +16,7 @@ const Layout = ({children}) => {
             style={({ isActive }) =>
                 (isActive ? { color: 'red' } : undefined)}
           > 
-                Campaigns 
+                Home 
           </Anchor>
           <Anchor
             component={NavLink}
@@ -32,14 +32,12 @@ const Layout = ({children}) => {
         <Header height={70} padding={0} p="xs">
           <Box sx={{ 
             display: "flex",
-            gap: '30%',
+            gap: '20%',
           }}>
             <Image src={logo} height={60} width={125} alt="logo/Rescue Initiative" />
-            <Box sx={{ 
-            display: "flex",
-          }} >
-              <Input placeholder="Seerch..." styles={{ input: { width: '100%', boxSizing: 'border-box' } }} />
-                <Button size="lg" color="pink" compact uppercase>
+            <Box sx={{ display: 'grid', gridTemplate: '1fr / 100% 1fr' , width: '30%'}} >
+              <Input placeholder="Seerch Campaign..." styles={{ input: { width: '100%', boxSizing: 'border-box' } }} />
+                <Button size="lg" color="red" radius="xs" compact uppercase>
                  {<FaSearch size={16} />}
                 </Button>
             </Box>
