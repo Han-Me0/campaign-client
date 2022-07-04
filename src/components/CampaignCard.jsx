@@ -1,11 +1,13 @@
 import { Card, Image, Text } from '@mantine/core';
+import { Link } from 'react-router-dom';
+
 const CampaignCard = ({campaign}) => {
     return (
         <Card
           shadow="sm"
           p="xl"
-          component="a"
-        //   href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          component={Link}
+          to ={`/campaigns/${campaign._id}`}
           target="_blank"
         >
           <Card.Section>

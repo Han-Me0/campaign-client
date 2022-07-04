@@ -16,6 +16,14 @@ const Layout = ({children}) => {
             style={({ isActive }) =>
                 (isActive ? { color: 'red' } : undefined)}
           > 
+                About 
+          </Anchor>
+          <Anchor
+            component={NavLink}
+            to="/campaigns"
+            style={({ isActive }) =>
+                (isActive ? { color: 'red' } : undefined)} 
+          >      
                 Home 
           </Anchor>
           <Anchor

@@ -1,41 +1,52 @@
 import { Modal, InputWrapper, Input, NumberInput, Button} from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { useNavigate } from 'react-router-dom' 
+import { useEffect } from 'react';
 
-const NewCampaignModal = ({isModalOpen, setisModalOpen}) => {
-    const Navigate = useNavigate()
+const UpdateCampaignModal = ({isModalOpen, setIsModalOpen, campaignId, campaign, setNeedRefresh }) => {
+  
     const form = useForm({
         initialValues: {
             image: '',
-            title: '',
+            title: "",
             description: '',
             place: '',
             campaignType: '',
             totalAmount: '10',
         }
     })
+    useEffect(() => {
+      form.setValues({
+            image: campaign.image,
+            title: campaign.title,
+            description: campaign.description,
+            place: campaign.place,
+            campaignType: campaign.campaignType,
+            totalAmount: campaign.totalAmount,
+      })
+    }, [campaign])
 
-    const createCampaign = async newCampaign => {
-        const response = await fetch('http://localhost:5005/api/campaigns', {
-        method: 'POST',
+    const updateCampaign = async (newValues) => {
+       await fetch(`http://localhost:5005/api/campaigns/${campaignId}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newCampaign),
+        body: JSON.stringify(newValues),
         })
-        const parsed = await response.json()
+        
         // console.log(parsed) it didn't log the message, it logged [[Prototype]]: Object !!
-        Navigate(`/campaigns/${parsed.id}`)
+        setNeedRefresh(true)
     }
     const handleSubmit = values => {
-        createCampaign(values)
+        updateCampaign(values)
+        setIsModalOpen(false)
     }
     
     return (
     <Modal
         opened={isModalOpen}
-        onClose={() => setisModalOpen(false)}
-        title="Add a new campaign!"
+        onClose={() => setIsModalOpen(false)}
+        title="Update campaign!"
       >
       <form onSubmit={form.onSubmit(handleSubmit)}>
       <InputWrapper 
@@ -84,12 +95,12 @@ const NewCampaignModal = ({isModalOpen, setisModalOpen}) => {
          description="Please enter your campaign's Category"
          { ...form.getInputProps('totalAmount')}
          >
-         <NumberInput min='0'/>
+         <NumberInput min='0' />
        </InputWrapper>
-       <Button type='submit'>Create</Button>
+       <Button type='submit'>Update</Button>
       </form>
     </Modal>
     );
 }
  
-export default NewCampaignModal;
+export default UpdateCampaignModal;
