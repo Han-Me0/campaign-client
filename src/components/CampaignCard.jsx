@@ -8,7 +8,9 @@ const CampaignCard = ({campaign}) => {
           p="xl"
           component={Link}
           to ={`/campaigns/${campaign._id}`}
-          target="_blank"
+          sx={{'&:hover': {
+            backgroundColor: 'lightcyan',
+          }}}
         >
           <Card.Section>
             <Image src={campaign.image} height={360} alt="The Campaign" />

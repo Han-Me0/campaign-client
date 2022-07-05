@@ -1,21 +1,15 @@
 import { Box, ActionIcon } from "@mantine/core";
-import { useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import CampaignCard from "../components/CampaignCard"
 import { Plus } from "tabler-icons-react";
 import NewCampaignModal from "../components/NewCampaignModal";
+import { CampaignsContext } from "../contexts/CampaignsContext";
 
 
 const AllCampaigns = () => {
-const [campaigns, setcampaigns] = useState([]);
+const { campaigns } = useContext(CampaignsContext)
 const [isModalOpen, setisModalOpen] = useState(false);
-const fetchData = async () => {
-    const response = await fetch('http://localhost:5005/api/campaigns')
-    const parsed = await response.json()
-    setcampaigns(parsed)
-  }
-  useEffect(() => {
-    fetchData()
-  }, []) 
+
     return ( 
         <>
         <Box sx={{ 

@@ -1,9 +1,8 @@
-import { AppShell, Navbar, Header, Box, Image ,Input, Button, Anchor } from '@mantine/core';
+import { AppShell, Navbar, Header, Box, Image , Button, Anchor } from '@mantine/core';
 // import SearchBar from 'react-js-search';
 import { FaSearch } from "react-icons/fa";
 import logo from '../images/mobile-logo2.png'
 import { NavLink } from "react-router-dom";
-// import Footer from './Footer'
 
 const Layout = ({children}) => {
     return ( <AppShell
@@ -34,6 +33,16 @@ const Layout = ({children}) => {
           >      
                 Categories 
           </Anchor>
+          <Anchor
+            component={NavLink}
+            to="/search"
+            style={({ isActive }) =>
+                (isActive ? { color: 'red' } : undefined)} 
+          >      
+                <Button size="lg" color="red" radius="xs" compact uppercase>
+                 {<FaSearch size={16} />}
+                </Button>
+          </Anchor>
         </Navbar>
         }
         header={
@@ -44,10 +53,12 @@ const Layout = ({children}) => {
           }}>
             <Image src={logo} height={60} width={125} alt="logo/Rescue Initiative" />
             <Box sx={{ display: 'grid', gridTemplate: '1fr / 100% 1fr' , width: '30%'}} >
-              <Input placeholder="Seerch Campaign..." styles={{ input: { width: '100%', boxSizing: 'border-box' } }} />
-                <Button size="lg" color="red" radius="xs" compact uppercase>
-                 {<FaSearch size={16} />}
-                </Button>
+              {/* <Input 
+              placeholder="Seerch Campaign..." 
+              styles={{ input: { width: '100%',
+              boxSizing: 'border-box' } 
+              }} /> */}
+                
             </Box>
           </Box>
         </Header>

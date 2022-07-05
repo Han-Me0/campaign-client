@@ -10,7 +10,7 @@ const CampaignDetailsPage = () => {
     const { campaignId } = useParams()
     const [campaign, setCampaign] = useState({});
     const navigate = useNavigate()
-    const [isModalOpen, serIsModalOpen] =useState(false)
+    const [isModalOpen, setIsModalOpen] =useState(false)
     const [needRefresh, setNeedRefresh] = useState(false);
 
     const fetchCampaign = async() => {
@@ -70,7 +70,7 @@ const CampaignDetailsPage = () => {
       style={{ marginTop: 30 }}>
          Total amount: {campaign.totalAmount} $
       </Text>
-      <ActionIcon style={{ marginTop: 30 }} onClick={() => serIsModalOpen(true)}>
+      <ActionIcon style={{ marginTop: 30 }} onClick={() => setIsModalOpen(true)}>
       <Pencil
         size={48}
         strokeWidth={2}
@@ -85,7 +85,7 @@ const CampaignDetailsPage = () => {
       />
       </ActionIcon>
     </Paper>
-    <UpdateCampaignModal isModalOpen={isModalOpen} serIsModalOpen={serIsModalOpen} campaignId={campaignId} campaign={campaign} setNeedRefresh={setNeedRefresh} />
+    <UpdateCampaignModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} campaignId={campaignId} campaign={campaign} setNeedRefresh={setNeedRefresh} />
     </>
 
     
