@@ -1,9 +1,12 @@
 import { Modal, InputWrapper, Input, NumberInput, Button} from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom' 
+import { SessionContext } from '../contexts/SessionContext';
 
 const NewCampaignModal = ({isModalOpen, setisModalOpen}) => {
-    const Navigate = useNavigate()
+    const navigate = useNavigate(SessionContext)
+    const {apiWithToken} = useContext
     const form = useForm({
         initialValues: {
             image: '',
@@ -16,17 +19,9 @@ const NewCampaignModal = ({isModalOpen, setisModalOpen}) => {
     })
 
     const createCampaign = async newCampaign => {
-        const response = await fetch('http://localhost:5005/api/campaigns', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newCampaign),
-        })
-        const parsed = await response.json()
-        // console.log(parsed) it didn't log the message, it logged [[Prototype]]: Object !!
-        Navigate(`/campaigns/${parsed.id}`)
-    }
+        const response = await apiWithToken('campaigns','POST', newCampaign)
+        navigate(`/campaigns/${response.id}`)
+    }  
     const handleSubmit = values => {
         createCampaign(values)
     }
@@ -84,7 +79,16 @@ const NewCampaignModal = ({isModalOpen, setisModalOpen}) => {
          description="Please enter your campaign's Category"
          { ...form.getInputProps('totalAmount')}
          >
-         <NumberInput min='0'/>
+         <NumberInput min='0'
+          label="Price"
+          defaultValue={1000}
+          parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
+          formatter={(value) =>
+            !Number.isNaN(parseFloat(value))
+          ? `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+          : '$ '
+          }
+          { ...form.getInputProps('totalAmount')} />
        </InputWrapper>
        <Button type='submit'>Create</Button>
       </form>

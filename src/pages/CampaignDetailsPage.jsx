@@ -1,22 +1,23 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useParams,useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import {Trash, Pencil} from "tabler-icons-react";
 import { Paper,Title, Text,Image, ActionIcon} from "@mantine/core";
-import { useNavigate } from "react-router-dom";
 import UpdateCampaignModal from "../components/UpdateCampaignModal"
+// import { apiBase } from "../utils/helper";
+import { SessionContext } from "../contexts/SessionContext";
 
 
 const CampaignDetailsPage = () => {
     const { campaignId } = useParams()
     const [campaign, setCampaign] = useState({});
     const navigate = useNavigate()
-    const [isModalOpen, setIsModalOpen] =useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false)
     const [needRefresh, setNeedRefresh] = useState(false);
+    const {apiWithToken} = useContext(SessionContext)
 
-    const fetchCampaign = async() => {
-        const response = await fetch(`http://localhost:5005/api/campaigns/${campaignId}`)
-        const parsed = await response.json()
-        setCampaign(parsed)
+    const fetchCampaign = async () => {
+        const response = await apiWithToken(`campaigns/${campaignId}`)
+        setCampaign(response)
     }
 
     useEffect(() => {
@@ -33,9 +34,9 @@ const CampaignDetailsPage = () => {
 
     const deleteCampaign = async () => {
         await fetch(`http://localhost:5005/api/campaigns/${campaignId}`, {method: "DELETE"})
-       navigate('/campaigns')
-        
+       navigate('/campaigns')   
     }
+
     const handleDelete = () => {
         deleteCampaign()
     }

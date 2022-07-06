@@ -52,50 +52,53 @@ const UpdateCampaignModal = ({isModalOpen, setIsModalOpen, campaignId, campaign,
       <InputWrapper 
          required 
          label="Image" 
-         description="Please upload your an image" 
-         { ...form.getInputProps('image')}
+         description="Please upload your an image"
          >
-         <Input />
+         <Input { ...form.getInputProps('image')}/>
        </InputWrapper>
        <InputWrapper 
          required 
          label="Title" 
-         description="Please enter your campaign's title" 
-         { ...form.getInputProps('title')}
+         description="Please enter your campaign's title"
          >
-         <Input />
+         <Input { ...form.getInputProps('title')}/>
        </InputWrapper>
        <InputWrapper 
          required 
          label="Description" 
          description="Please enter your campaign's description"
-         { ...form.getInputProps('description')}
          >
-         <Input />
+         <Input { ...form.getInputProps('description')}/>
        </InputWrapper>
        <InputWrapper 
          required 
          label="Place" 
          description="Please enter your campaign's place"
-         { ...form.getInputProps('place')}
          >
-         <Input />
+         <Input { ...form.getInputProps('place')}/>
        </InputWrapper>
        <InputWrapper 
          required 
          label="Category" 
          description="Please enter your campaign's Category"
-         { ...form.getInputProps('campaignType')}
          >
-         <Input />
+         <Input { ...form.getInputProps('campaignType')}/>
        </InputWrapper>
        <InputWrapper 
          required 
          label="Total amount" 
          description="Please enter your campaign's Category"
-         { ...form.getInputProps('totalAmount')}
          >
-         <NumberInput min='0' />
+         <NumberInput min='0'
+          label="Price"
+          defaultValue={1000}
+          parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
+          formatter={(value) =>
+            !Number.isNaN(parseFloat(value))
+          ? `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+          : '$ '
+          }
+          { ...form.getInputProps('totalAmount')} />
        </InputWrapper>
        <Button type='submit'>Update</Button>
       </form>
