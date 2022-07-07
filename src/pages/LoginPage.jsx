@@ -1,4 +1,4 @@
-import { Button, Input, InputWrapper, PasswordInput} from '@mantine/core'
+import { Button, Input, InputWrapper, PasswordInput, Box, Title } from '@mantine/core'
 import { useForm } from '@mantine/hooks'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -7,7 +7,7 @@ import { login } from '../utils/helper'
 
 const LoginPage = () => {
     const navigate = useNavigate()
-   const {setToken} = useContext(SessionContext)
+   const {authenticateUser} = useContext(SessionContext)
   const form = useForm({
     initialValues: {
         username: '',
@@ -22,7 +22,7 @@ const logUser = async (credentials) => {
    if(response.status === 'KO') {
        throw new Error(response.message)
    } else {
-       setToken(response.token)
+    authenticateUser(response.token)
    }
   } catch (error) {
     console.log(error)
@@ -35,6 +35,8 @@ const handleSubmit = values => {
 }
 
     return (
+        <Box>
+      <Title>Login</Title>
         <form onSubmit={form.onSubmit(handleSubmit)}>
     <InputWrapper 
          required 
@@ -53,6 +55,7 @@ const handleSubmit = values => {
        </InputWrapper>
        <Button sx={{margin:'20px', width:'10%'}} type='submit'>Login</Button>
     </form>
+    </Box>
     )
  
  }

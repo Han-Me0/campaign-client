@@ -1,9 +1,9 @@
-import { Box, ActionIcon } from "@mantine/core";
+import { Box } from "@mantine/core";
 import { useContext, useState } from "react"
 import CampaignCard from "../components/CampaignCard"
-import { Plus } from "tabler-icons-react";
 import NewCampaignModal from "../components/NewCampaignModal";
 import { CampaignsContext } from "../contexts/CampaignsContext";
+import AddButton from "../components/AddButton";
 
 
 const AllCampaigns = () => {
@@ -20,15 +20,9 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             margin: '30px',
           }}>
             {campaigns.map(campaign => (
-              <CampaignCard campaign={campaign}/>
+              <CampaignCard key={campaign._id} campaign={campaign}/>
             ))}
-            <ActionIcon variant="filled" size="xl" onClick={() => setIsModalOpen(true) }>
-            <Plus
-              size={48}
-              strokeWidth={2}
-              color={'#79d292'}
-            />
-            </ActionIcon>
+            <AddButton setIsModalOpen={setIsModalOpen} />
         </Box>
         <NewCampaignModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </>

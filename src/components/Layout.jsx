@@ -1,11 +1,17 @@
-import { AppShell, Navbar, Header, Box, Image , Button, Anchor } from '@mantine/core';
+import { AppShell, Navbar, Header, Box, Image , Button, Anchor, ActionIcon } from '@mantine/core';
 // import SearchBar from 'react-js-search';
 import { FaSearch } from "react-icons/fa";
 import logo from '../images/mobile-logo2.png'
 import { NavLink } from "react-router-dom";
+import {Logout} from "tabler-icons-react";
+import { useContext } from 'react'
+import { SessionContext } from '../contexts/SessionContext'
 
 const Layout = ({children}) => {
-    return ( <AppShell
+  const { logout } = useContext(SessionContext)
+
+    return ( 
+    <AppShell
         padding="md"
         navbar={
         <Navbar width={{ base: 100 }} height={500} p="xs">
@@ -58,7 +64,7 @@ const Layout = ({children}) => {
               styles={{ input: { width: '100%',
               boxSizing: 'border-box' } 
               }} /> */}
-              <Box sx={{ display: 'grid', gridTemplate: '1fr / 1fr 1fr' , width: '20%', gap: '16%', margin: '2%'}} >
+              <Box sx={{ display: 'grid', gridTemplate: '1fr / 1fr 1fr 1fr' , width: '20%', gap: '16%', margin: '2%'}} >
               <Anchor 
             component={NavLink}
             to="/signup"
@@ -75,6 +81,9 @@ const Layout = ({children}) => {
           > 
                 Login 
           </Anchor>
+          <ActionIcon onClick={logout}>
+                <Logout size={48} strokeWidth={2} color={'grey'} />
+              </ActionIcon>
              </Box>
             </Box>
           </Box>
@@ -86,10 +95,9 @@ const Layout = ({children}) => {
       >
     
         {children}
-       
       </AppShell>
       
-    //   </Footer>
+      
       );
 }
  

@@ -33,13 +33,11 @@ const UpdateCampaignModal = ({isModalOpen, setIsModalOpen, campaignId, campaign,
         },
         body: JSON.stringify(newValues),
         })
-        
-        // console.log(parsed) it didn't log the message, it logged [[Prototype]]: Object !!
         setNeedRefresh(true)
+        setIsModalOpen(false)
     }
     const handleSubmit = values => {
         updateCampaign(values)
-        setIsModalOpen(false)
     }
     
     return (
@@ -49,8 +47,7 @@ const UpdateCampaignModal = ({isModalOpen, setIsModalOpen, campaignId, campaign,
         title="Update campaign!"
       >
       <form onSubmit={form.onSubmit(handleSubmit)}>
-      <InputWrapper 
-         required 
+      <InputWrapper  
          label="Image" 
          description="Please upload your an image"
          >
@@ -71,21 +68,18 @@ const UpdateCampaignModal = ({isModalOpen, setIsModalOpen, campaignId, campaign,
          <Input { ...form.getInputProps('description')}/>
        </InputWrapper>
        <InputWrapper 
-         required 
          label="Place" 
          description="Please enter your campaign's place"
          >
          <Input { ...form.getInputProps('place')}/>
        </InputWrapper>
-       <InputWrapper 
-         required 
+       <InputWrapper  
          label="Category" 
          description="Please enter your campaign's Category"
          >
          <Input { ...form.getInputProps('campaignType')}/>
        </InputWrapper>
-       <InputWrapper 
-         required 
+       <InputWrapper  
          label="Total amount" 
          description="Please enter your campaign's Category"
          >

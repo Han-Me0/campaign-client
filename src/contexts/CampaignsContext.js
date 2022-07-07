@@ -5,7 +5,7 @@ const CampaignsContext = createContext()
 
 const CampaignsContextProvider = ({children}) => {
 const [campaigns, setCampaigns] = useState([]);
-const {token, apiWithToken} = useContext(SessionContext)
+const {isAuthenticated, apiWithToken} = useContext(SessionContext)
 
 const fetchCampaigns = async() => {
  const response = await apiWithToken('campaigns')
@@ -13,10 +13,10 @@ const fetchCampaigns = async() => {
 }
 
 useEffect(() => {
-    if (token) {
+    if (isAuthenticated) {
       fetchCampaigns()
     }
-  }, [token])
+  }, [isAuthenticated])
     return (
         <CampaignsContext.Provider value={{ campaigns }}>
            {children}

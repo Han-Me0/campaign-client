@@ -1,12 +1,12 @@
 import { Modal, InputWrapper, Input, Button,MultiSelect} from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useContext } from 'react';
-// import { useNavigate } from 'react-router-dom' 
-import { CategoriesContext } from '../contexts/SessionContext';
+import { useNavigate } from 'react-router-dom' 
+import { CampaignsContext } from '../contexts/CampaignsContext';
 
 const NewCategoryModal = ({isModalOpen, setIsModalOpen}) => {
-    // const navigate = useNavigate()
-    const {campaigns} = useContext(CategoriesContext)
+    const navigate = useNavigate()
+    const {campaigns} = useContext(CampaignsContext)
     const form = useForm({
         initialValues: {
             kind: '',
@@ -22,7 +22,10 @@ const NewCategoryModal = ({isModalOpen, setIsModalOpen}) => {
           },
           body: JSON.stringify(newCategory),
         })
+        const parsed = await response.json()
+        navigate(`/bars/${parsed.id}`)
     }  
+    
     const handleSubmit = values => {
         createCategory(values)
     }

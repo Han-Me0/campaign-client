@@ -49,8 +49,8 @@ const CampaignDetailsPage = () => {
       <>
     <Paper shadow="md" radius="xs" p="xl"  margin="0"
     sx={{
-        // width:'50%',
-        marginLeft: '50%'
+        width:'100%',
+        // marginLeft: '50%'
     }}>
       <Title>
          {campaign.title}

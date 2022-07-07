@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom' 
 import { SessionContext } from '../contexts/SessionContext';
 
-const NewCampaignModal = ({isModalOpen, setisModalOpen}) => {
+const NewCampaignModal = ({isModalOpen, setIsModalOpen}) => {
     const navigate = useNavigate()
     const {apiWithToken} = useContext(SessionContext)
     const form = useForm({
@@ -30,49 +30,42 @@ const NewCampaignModal = ({isModalOpen, setisModalOpen}) => {
     return (
     <Modal
         opened={isModalOpen}
-        onClose={() => setisModalOpen(false)}
+        onClose={() => setIsModalOpen(false)}
         title="Add a new campaign!"
       >
       <form onSubmit={form.onSubmit(handleSubmit)}>
       <InputWrapper 
-         required 
          label="Image" 
-         description="Please upload your an image" 
-         { ...form.getInputProps('image')}
+         description="Please upload an image" 
          >
-         <Input />
+         <Input { ...form.getInputProps('image')} />
        </InputWrapper>
        <InputWrapper 
          required 
          label="Title" 
          description="Please enter your campaign's title" 
-         { ...form.getInputProps('title')}
          >
-         <Input />
+         <Input { ...form.getInputProps('title')} />
        </InputWrapper>
        <InputWrapper 
          required 
          label="Description" 
          description="Please enter your campaign's description"
-         { ...form.getInputProps('description')}
          >
-         <Input />
+         <Input { ...form.getInputProps('description')} />
        </InputWrapper>
-       <InputWrapper 
-         required 
+       <InputWrapper  
          label="Place" 
          description="Please enter your campaign's place"
-         { ...form.getInputProps('place')}
          >
-         <Input />
+         <Input { ...form.getInputProps('place')} />
        </InputWrapper>
        <InputWrapper 
          required 
          label="Category" 
          description="Please enter your campaign's Category"
-         { ...form.getInputProps('campaignType')}
          >
-         <Input />
+         <Input { ...form.getInputProps('campaignType')} />
        </InputWrapper>
        <InputWrapper 
          required 

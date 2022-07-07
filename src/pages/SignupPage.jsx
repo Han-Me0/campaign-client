@@ -36,7 +36,7 @@ const handleSubmit = values => {
          required 
          label="Name" 
          description="Please enter your name" 
-         
+         {...form.getInputProps('username')}
          >
          <Input { ...form.getInputProps('username')} />
        </InputWrapper>
