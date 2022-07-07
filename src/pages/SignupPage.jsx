@@ -13,9 +13,10 @@ const SignupPage = () => {
 })
 
 const createUser = async newUser => {
+    console.log('HIIIIER',newUser)
     try {
         const response = await signup(newUser)
-        
+
       if(response.status === 'KO') {
           throw new Error(response.message)
       }
@@ -35,7 +36,7 @@ const handleSubmit = values => {
          required 
          label="Name" 
          description="Please enter your name" 
-         { ...form.getInputProps('username')}
+         
          >
          <Input { ...form.getInputProps('username')} />
        </InputWrapper>

@@ -8,7 +8,7 @@ import { CampaignsContext } from "../contexts/CampaignsContext";
 
 const AllCampaigns = () => {
 const { campaigns } = useContext(CampaignsContext)
-const [isModalOpen, setisModalOpen] = useState(false);
+const [isModalOpen, setIsModalOpen] = useState(false);
 
     return ( 
         <>
@@ -22,7 +22,7 @@ const [isModalOpen, setisModalOpen] = useState(false);
             {campaigns.map(campaign => (
               <CampaignCard campaign={campaign}/>
             ))}
-            <ActionIcon variant="filled" size="xl" onClick={() => setisModalOpen(true) }>
+            <ActionIcon variant="filled" size="xl" onClick={() => setIsModalOpen(true) }>
             <Plus
               size={48}
               strokeWidth={2}
@@ -30,7 +30,7 @@ const [isModalOpen, setisModalOpen] = useState(false);
             />
             </ActionIcon>
         </Box>
-        <NewCampaignModal isModalOpen={isModalOpen} setisModalOpen={setisModalOpen} />
+        <NewCampaignModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </>
      );
 }

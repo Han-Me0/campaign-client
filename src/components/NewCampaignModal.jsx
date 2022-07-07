@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext';
 
 const NewCampaignModal = ({isModalOpen, setisModalOpen}) => {
-    const navigate = useNavigate(SessionContext)
-    const {apiWithToken} = useContext
+    const navigate = useNavigate()
+    const {apiWithToken} = useContext(SessionContext)
     const form = useForm({
         initialValues: {
             image: '',
@@ -19,6 +19,7 @@ const NewCampaignModal = ({isModalOpen, setisModalOpen}) => {
     })
 
     const createCampaign = async newCampaign => {
+      console.log("",newCampaign)
         const response = await apiWithToken('campaigns','POST', newCampaign)
         navigate(`/campaigns/${response.id}`)
     }  
