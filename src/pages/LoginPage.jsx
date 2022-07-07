@@ -24,6 +24,7 @@ const logUser = async (credentials) => {
    } else {
     authenticateUser(response.token)
    }
+   navigate('/campaigns')
   } catch (error) {
     console.log(error)
 } 

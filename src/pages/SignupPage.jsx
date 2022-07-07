@@ -1,4 +1,4 @@
-import { InputWrapper, Input, PasswordInput, Button } from '@mantine/core';
+import { InputWrapper, Input, PasswordInput, Button, Box, Title } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useNavigate } from 'react-router-dom'
 import { signup } from '../utils/helper';
@@ -30,7 +30,9 @@ const createUser = async newUser => {
 const handleSubmit = values => {
     createUser(values)
 }
-    return ( 
+    return (
+      <Box>
+      <Title>Signup</Title>
     <form onSubmit={form.onSubmit(handleSubmit)}>
     <InputWrapper 
          required 
@@ -49,6 +51,7 @@ const handleSubmit = values => {
        </InputWrapper>
        <Button sx={{margin:'20px', width:'10%'}} type='submit'>Register</Button>
     </form>
+    </Box>
      );
 }
  

@@ -24,8 +24,8 @@ function App() {
          <Route path="/signup" element={<SignupPage />} />
          <Route path="/login" element={<LoginPage />} />
          <Route path="/campaigns" element={<AllCampaigns />} />
-         <Route path="/camtegories" element={<AllCategories />} />
-         <Route path="/camtegories/:categoryId" element={<CategoryDetailsPage />} />
+         <Route path="/categories" element={<AllCategories />} />
+         <Route path="/categories/:categoryId" element={<CategoryDetailsPage />} />
          {/* <Route path="/campaigns/search" element={<SearchPage />} /> */}
          <Route path="+" element={<ErrorPage />} />
          <Route path="/campaigns/:campaignId" element={<CampaignDetailsPage />} />

@@ -59,7 +59,7 @@ const CampaignDetailsPage = () => {
           <Trash size={48} strokeWidth={2} color={'#bf4040'} />
         </ActionIcon>
     </Paper>
-    <UpdateCategoryModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} campaignId={categoryId} category={category} setNeedRefresh={setNeedRefresh} />
+    <UpdateCategoryModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} categoryId={categoryId} category={category} setNeedRefresh={setNeedRefresh} />
     </>
 
     
