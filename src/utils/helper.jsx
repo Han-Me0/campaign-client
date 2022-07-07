@@ -32,13 +32,13 @@ export const fetchCampaigns = async setter => {
     return parsed
   }
 
-  export const login = async (credentials) => {
+  export const login = async credentials => {
     const response = await authBase('login', credentials)
     console.log(response)
     return response
   }
 
-  export const signup = async (credentials) => {
+  export const signup = async credentials => {
     const response = await authBase('signup', credentials)
     console.log(response)
     return response

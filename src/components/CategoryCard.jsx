@@ -21,7 +21,7 @@ const CategoryCard = ({category}) => {
         Number of campaigns: {category.campaigns.length}
       </Text>
         </Card>
-      );
+      )
 }
  
 export default CategoryCard;
